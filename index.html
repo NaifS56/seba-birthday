@@ -312,7 +312,7 @@ for(let i=0;i<5;i++){
 
 /* ============ sound toggle ============ */
 const bgm = document.getElementById('bgm');
-      bgm.volume = 0.1;
+            bgm.volume = 0.05;
 const soundToggle = document.getElementById('soundToggle');
 soundToggle.addEventListener('click', ()=>{
   bgm.muted = !bgm.muted;
@@ -352,8 +352,9 @@ nextBtn.addEventListener('click', ()=>{
 
   if(step===3){
     nextBtn.classList.add('hidden');
-        const startPlayback = () => { bgm.currentTime = 47; bgm.play().catch(()=>{ /* المتصفح منع التشغيل التلقائي، اضغطي زر الصوت */ }); };
-        if (bgm.readyState >= 1) { startPlayback(); } else { bgm.addEventListener('loadedmetadata', startPlayback, { once: true }); }
+              const seekTo47 = () => { bgm.currentTime = 47; };
+              if (bgm.readyState >= 1) { seekTo47(); } else { bgm.addEventListener('loadedmetadata', seekTo47, { once: true }); }
+          bgm.play().catch(()=>{ /* المتصفح منع التشغيل التلقائي، اضغطي زر الصوت */ });
     clearStack();
     runStory();
   }
