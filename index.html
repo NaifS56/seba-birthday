@@ -144,22 +144,10 @@
     width:14px; height:14px; border-radius:50%;
     background:var(--white-soft); opacity:.9;
   }
-  .candle{
-    position:absolute; bottom:152px; left:50%; transform:translateX(-50%);
-    width:6px; height:26px; border-radius:3px;
-    background:repeating-linear-gradient(180deg,var(--gold) 0 6px, #fff5d6 6px 12px);
-  }
-  .topper{ position:absolute; bottom:120px; left:50%; transform:translateX(-50%); font-family:'Cairo',sans-serif; font-weight:800; font-size:16px; letter-spacing:.5px; color:var(--gold); text-shadow:0 0 10px rgba(244,212,76,.65); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.28); padding:3px 11px; border-radius:9px; backdrop-filter:blur(2px); z-index:5; animation:twinkle 2.4s ease-in-out infinite; }
-  .topper::after{ content:''; position:absolute; bottom:-13px; left:50%; transform:translateX(-50%); width:2px; height:13px; background:rgba(255,255,255,.45); }
-  .flame{
-    position:absolute; bottom:176px; left:50%; transform:translateX(-50%);
-    width:10px; height:16px; border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
-    background:radial-gradient(circle at 50% 30%, #fff3b0, #ffb545 55%, #ff7a3d 90%);
-    box-shadow:0 0 10px 2px rgba(255,170,80,.6);
-    animation:flicker 1.1s ease-in-out infinite;
-    transform-origin:bottom center;
-  }
-  @keyframes flicker{
+    .candles{ position:absolute; bottom:118px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:5; direction:ltr; }
+      .candle-num{ position:relative; width:22px; height:34px; border-radius:4px; background:linear-gradient(180deg,var(--gold),#c9971f); display:flex; align-items:center; justify-content:center; font-family:'Cairo',sans-serif; font-weight:800; font-size:18px; color:#2a0a45; box-shadow:0 2px 6px rgba(0,0,0,.35), inset 0 0 5px rgba(255,255,255,.45); }
+      .candle-num .flame{ position:absolute; top:-16px; left:50%; transform:translateX(-50%); width:10px; height:16px; border-radius:50% 50% 50% 50%/60% 60% 40% 40%; background:radial-gradient(circle at 50% 30%, #fff3b0, #ffb545 55%, #ff7a3d 90%); box-shadow:0 0 10px 2px rgba(255,170,80,.6); animation:flicker 1.1s ease-in-out infinite; transform-origin:bottom center; }
+    @keyframes flicker{
     0%,100%{ transform:translateX(-50%) scale(1) rotate(0deg); }
     30%{ transform:translateX(-50%) scale(0.9,1.1) rotate(-4deg); }
     60%{ transform:translateX(-50%) scale(1.08,0.92) rotate(3deg); }
@@ -234,9 +222,10 @@
       <div class="frosting b" id="frostB"></div>
       <div class="layer top"></div>
       <div class="frosting t" id="frostT"></div>
-      <div class="topper">18</div>
-      <div class="candle"></div>
-      <div class="flame"></div>
+            <div class="candles">
+                              <div class="candle-num">1<span class="flame"></span></div>
+                      <div class="candle-num">8<span class="flame"></span></div>
+            </div>
     </div>
 
     <div class="card">
