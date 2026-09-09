@@ -312,6 +312,7 @@ for(let i=0;i<5;i++){
 
 /* ============ sound toggle ============ */
 const bgm = document.getElementById('bgm');
+  bgm.volume = 0.4;
 const soundToggle = document.getElementById('soundToggle');
 soundToggle.addEventListener('click', ()=>{
   bgm.muted = !bgm.muted;
