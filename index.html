@@ -312,7 +312,7 @@ for(let i=0;i<5;i++){
 
 /* ============ sound toggle ============ */
 const bgm = document.getElementById('bgm');
-    bgm.volume = 0.2;
+      bgm.volume = 0.1;
 const soundToggle = document.getElementById('soundToggle');
 soundToggle.addEventListener('click', ()=>{
   bgm.muted = !bgm.muted;
@@ -352,8 +352,8 @@ nextBtn.addEventListener('click', ()=>{
 
   if(step===3){
     nextBtn.classList.add('hidden');
-    bgm.currentTime = 47;
-    bgm.play().catch(()=>{ /* المتصفح منع التشغيل التلقائي، اضغطي زر الصوت */ });
+        const startPlayback = () => { bgm.currentTime = 47; bgm.play().catch(()=>{ /* المتصفح منع التشغيل التلقائي، اضغطي زر الصوت */ }); };
+        if (bgm.readyState >= 1) { startPlayback(); } else { bgm.addEventListener('loadedmetadata', startPlayback, { once: true }); }
     clearStack();
     runStory();
   }
