@@ -312,7 +312,7 @@ for(let i=0;i<5;i++){
 
 /* ============ sound toggle ============ */
 const bgm = document.getElementById('bgm');
-  bgm.volume = 0.4;
+    bgm.volume = 0.2;
 const soundToggle = document.getElementById('soundToggle');
 soundToggle.addEventListener('click', ()=>{
   bgm.muted = !bgm.muted;
@@ -352,7 +352,7 @@ nextBtn.addEventListener('click', ()=>{
 
   if(step===3){
     nextBtn.classList.add('hidden');
-    bgm.currentTime = 0;
+    bgm.currentTime = 47;
     bgm.play().catch(()=>{ /* المتصفح منع التشغيل التلقائي، اضغطي زر الصوت */ });
     clearStack();
     runStory();
