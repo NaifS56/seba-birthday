@@ -149,6 +149,8 @@
     width:6px; height:26px; border-radius:3px;
     background:repeating-linear-gradient(180deg,var(--gold) 0 6px, #fff5d6 6px 12px);
   }
+  .topper{ position:absolute; bottom:120px; left:50%; transform:translateX(-50%); font-family:'Cairo',sans-serif; font-weight:800; font-size:16px; letter-spacing:.5px; color:var(--gold); text-shadow:0 0 10px rgba(244,212,76,.65); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.28); padding:3px 11px; border-radius:9px; backdrop-filter:blur(2px); z-index:5; animation:twinkle 2.4s ease-in-out infinite; }
+  .topper::after{ content:''; position:absolute; bottom:-13px; left:50%; transform:translateX(-50%); width:2px; height:13px; background:rgba(255,255,255,.45); }
   .flame{
     position:absolute; bottom:176px; left:50%; transform:translateX(-50%);
     width:10px; height:16px; border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
@@ -232,6 +234,7 @@
       <div class="frosting b" id="frostB"></div>
       <div class="layer top"></div>
       <div class="frosting t" id="frostT"></div>
+      <div class="topper">18</div>
       <div class="candle"></div>
       <div class="flame"></div>
     </div>
