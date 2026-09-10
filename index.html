@@ -210,8 +210,8 @@
   }
     /* ---------- side photo frames ---------- */
     .photo-frame{ position:absolute; top:190px; width:90px; height:90px; border-radius:50%; z-index:3; pointer-events:none; padding:4px; background:rgba(244,212,76,.28); border:1px solid rgba(244,212,76,.45); box-shadow:0 0 18px rgba(244,212,76,.18), 0 8px 20px rgba(0,0,0,.3); }
-    .photo-frame.left{ left:10px; animation:sway-left 5.5s ease-in-out infinite; }
-    .photo-frame.right{ right:10px; animation:sway-right 6.2s ease-in-out infinite; }
+          .photo-frame.left{ left:max(4px, calc(50% - 179px)); animation:sway-left 5.5s ease-in-out infinite; }
+          .photo-frame.right{ right:max(4px, calc(50% - 179px)); animation:sway-right 6.2s ease-in-out infinite; }
     .photo-frame img{ width:100%; height:100%; border-radius:50%; object-fit:cover; opacity:.5; display:block; }
     @keyframes sway-left{ 0%,100%{ transform:translateX(0) rotate(0deg); } 50%{ transform:translateX(7px) rotate(2deg); } }
     @keyframes sway-right{ 0%,100%{ transform:translateX(0) rotate(0deg); } 50%{ transform:translateX(-7px) rotate(-2deg); } }
