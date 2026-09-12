@@ -318,7 +318,8 @@ for(let i=0;i<5;i++){
 
 /* ============ sound toggle ============ */
 const bgm = document.getElementById('bgm');
-            bgm.volume = 0.05;
+bgm.volume = 0;
+
 const soundToggle = document.getElementById('soundToggle');
 soundToggle.addEventListener('click', ()=>{
   bgm.muted = !bgm.muted;
@@ -360,7 +361,20 @@ nextBtn.addEventListener('click', ()=>{
     nextBtn.classList.add('hidden');
               const seekTo47 = () => { bgm.currentTime = 47; };
               if (bgm.readyState >= 1) { seekTo47(); } else { bgm.addEventListener('loadedmetadata', seekTo47, { once: true }); }
-          bgm.play().catch(()=>{ /* المتصفح منع التشغيل التلقائي، اضغطي زر الصوت */ });
+         bgm.volume = 0;
+
+bgm.play().then(() => {
+  let volume = 0;
+
+  const fadeIn = setInterval(() => {
+    volume += 0.01;
+    bgm.volume = Math.min(volume, 0.05);
+
+    if (volume >= 0.05) {
+      clearInterval(fadeIn);
+    }
+  }, 100);
+}).catch(()=>{ /* المتصفح منع التشغيل التلقائي، اضغطي زر الصوت */ });
     clearStack();
     runStory();
   }
@@ -381,7 +395,7 @@ function runStory(){
     setTimeout(fadeStack, 3000+5000+3000);
     setTimeout(()=>{
       clearStack();
-      addLine('وإن شاء الله يوماً ما يتم لقاكِ بالحلال طبعاً 💜', {final:true});
+      addLine(' وإن شاء الله يوماً ما يتم لقائكِ بالحلال طبعاً اذا ربنا كتبها النا💜', {final:true});
     }, 3000+5000+3000+800);
   }, 7800);
 }
