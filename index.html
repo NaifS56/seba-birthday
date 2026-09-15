@@ -107,10 +107,8 @@
     position:relative; z-index:10; height:100%; width:100%;
         display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
         gap:clamp(14px,3vh,28px); padding:330px 18px 30px;
-        transition:padding-top 3.5s ease-in-out;
     text-align:center;
   }
-        body.settle .stage{ padding-top:60px; }
 
   /* ---------- cake ---------- */
     .cake-wrap{ position:absolute; top:112px; left:50%; transform:translateX(-50%); width:190px; height:150px; z-index:7; transition:top 3.5s ease-in-out; }
@@ -404,7 +402,11 @@ function runStory(){
       setTimeout(()=>{
         clearStack();
         addLine('المفروض احط التذكرة حقة الفلم هون بس خربو فكرتي وأصلاً رحتيه 🚶');
-        setTimeout(()=> document.body.classList.add('settle'), 1500);
+        setTimeout(fadeStack, 2500);
+        setTimeout(()=>{
+          clearStack();
+          document.body.classList.add('settle');
+        }, 3300);
       }, 8800);
     }, 3000+5000+3000+800);
   }, 7800);
