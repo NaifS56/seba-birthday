@@ -264,11 +264,17 @@
           .photo-frame.left{ left:max(4px, calc(50% - 179px)); animation:sway-left 5.5s ease-in-out infinite; }
           .photo-frame.right{ right:max(4px, calc(50% - 179px)); animation:sway-right 6.2s ease-in-out infinite; }
           .side-letter{
-            position:absolute; top:286px; z-index:6;
-            right:max(4px, calc(50% - 179px)); width:min(220px,42vw);
-            font-size:clamp(.66rem,2.1vw,.8rem); font-weight:500; line-height:1.65;
+            position:absolute; top:120px; z-index:6;
+            right:max(4px, 4vw); width:clamp(150px,26vw,300px);
+            font-size:clamp(.7rem,1.6vw,.85rem); font-weight:500; line-height:1.65;
             text-align:right; color:var(--white-soft); text-shadow:0 2px 8px rgba(0,0,0,.45);
             opacity:0; animation:rise 1.4s ease forwards .5s;
+          }
+          @media (max-width:560px){
+            .side-letter{
+              top:286px; right:max(4px, calc(50% - 179px)); width:min(220px,42vw);
+              font-size:clamp(.62rem,2vw,.75rem);
+            }
           }
           body.settle .cake-wrap{ top:calc(50% - 75px); }
           body.settle .photo-frame{ top:calc(50% - 45px); }
