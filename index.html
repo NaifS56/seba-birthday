@@ -210,6 +210,11 @@
   }
         .line.soft{ font-weight:800; font-size:clamp(.95rem,3.4vw,1.2rem); color:var(--lilac); }
   .line.eng{ direction:ltr; font-family:'Cairo',sans-serif; }
+  .line.letter{
+    font-size:clamp(.85rem,2.6vw,1.05rem); font-weight:500; line-height:1.9;
+    max-width:min(560px,90vw); text-align:right;
+    animation:rise 1.2s ease forwards;
+  }
   @keyframes rise{
     to{ opacity:1; transform:translateY(0); }
   }
@@ -231,6 +236,9 @@
     50%{ filter:drop-shadow(0 0 10px rgba(255,255,255,.45)); }
   }
 
+  #openingLine{
+    display:flex; flex-direction:column; align-items:center; gap:8px; width:100%;
+  }
   #openingLine.stuck{
     position:fixed; left:0; right:0; margin:0 auto;
     z-index:15; transition:top 2.5s ease-in-out;
@@ -295,7 +303,10 @@
     </div>
 
     <div class="card">
-      <p class="line eng" id="openingLine">I'm broken, but my feelings never changed</p>
+      <div id="openingLine">
+        <p class="line eng">I'm broken, but my feelings never changed</p>
+        <p class="line eng">A part of my day is missing when you told me not send any messages to you</p>
+      </div>
       <div class="stack" id="stack"></div>
       <button class="next-btn" id="nextBtn">التالي</button>
     </div>
@@ -405,7 +416,7 @@ let step = 0;
 
 function addLine(text, opts={}){
   const p=document.createElement('p');
-  p.className='line'+(opts.soft?' soft':'')+(opts.eng?' eng':'')+(opts.final?' final-line':'');
+  p.className='line'+(opts.soft?' soft':'')+(opts.eng?' eng':'')+(opts.final?' final-line':'')+(opts.letter?' letter':'');
   p.textContent=text;
   stack.appendChild(p);
   return p;
@@ -489,6 +500,12 @@ function runStory(){
         setTimeout(()=>{
           clearStack();
           document.body.classList.add('settle');
+          setTimeout(()=>{
+            addLine('بس أنا اخذتها من منظور ثاني انك تعبتي نفسيأ بعد كل جلسات الصراحة ومن التفكير الزايد اللي ماله داعي وانا ما تقبلت اول ما قريت الرسالة, بس لما روقت فكرت تاني وقلت هيك الصح أصلاً وانا بعرف انك ما بتكرهيني بس مسبب لك قلق دائم بسبب هالشي وشفت انه اللي سويتيه أفضل شي حتى لو انه للان بخش وبضلي اقرا رسايل ونفسيتي تعبت بس فترة وتعدي هذا اللي بقلبي وبعرف انه ما عندك مشاعر من اول بس بعد اخر مرة يعني كانت قوية شوي بس خلص عادي وحبيت اقول كل هذا عشان اريح قلبي لانه بديش ارسلك مباشرة وأزعجك وبس.', {letter:true});
+            setTimeout(()=>{
+              addLine('ما بعرف اذا حترجعي تشوفي الموقع بعدين بس اتمنى انك تشوفي عشان هذي طريقتي بالصراحة و نفسي اكون معك وبس', {final:true});
+            }, 1800);
+          }, 4000);
         }, 3300);
       }, 8800);
     }, 3000+5000+3000+800);
