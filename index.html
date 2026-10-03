@@ -231,6 +231,12 @@
     50%{ filter:drop-shadow(0 0 10px rgba(255,255,255,.45)); }
   }
 
+  #openingLine.stuck{
+    position:fixed; left:0; right:0; margin:0 auto;
+    z-index:15; transition:top 2.5s ease-in-out;
+    width:min(520px,92vw); text-align:center;
+  }
+
   .next-btn{
     border:none; cursor:pointer; font-family:'Cairo',sans-serif;
     font-size:1rem; font-weight:700; color:#1a1512;
@@ -289,9 +295,8 @@
     </div>
 
     <div class="card">
-      <div class="stack" id="stack">
-        <p class="line eng">I'm broken, but my feelings never changed</p>
-      </div>
+      <p class="line eng" id="openingLine">I'm broken, but my feelings never changed</p>
+      <div class="stack" id="stack"></div>
       <button class="next-btn" id="nextBtn">التالي</button>
     </div>
   </div>
@@ -409,10 +414,22 @@ function addLine(text, opts={}){
 function clearStack(){ stack.innerHTML=''; stack.classList.remove('fading'); }
 function fadeStack(){ stack.classList.add('fading'); }
 
+const openingLine = document.getElementById('openingLine');
+function stickOpeningLineToBottom(){
+  const rect = openingLine.getBoundingClientRect();
+  openingLine.style.top = rect.top + 'px';
+  openingLine.classList.add('stuck');
+  openingLine.offsetHeight; // force reflow so the transition animates from rect.top
+  requestAnimationFrame(()=>{
+    openingLine.style.top = (window.innerHeight - rect.height - 20) + 'px';
+  });
+}
+
 nextBtn.addEventListener('click', ()=>{
   step++;
 
   if(step===1){
+    stickOpeningLineToBottom();
     clearStack();
     addLine('You asked me to heal you?', {eng:true});
     return;
