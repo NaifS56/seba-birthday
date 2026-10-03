@@ -273,7 +273,9 @@
     </div>
 
     <div class="card">
-      <div class="stack" id="stack"></div>
+      <div class="stack" id="stack">
+        <p class="line eng">I'm broken, but my feelings never changed</p>
+      </div>
       <button class="next-btn" id="nextBtn">التالي</button>
     </div>
   </div>
@@ -356,24 +358,16 @@ soundToggle.addEventListener('click', ()=>{
   soundToggle.textContent = bgm.muted ? '🔇' : '🔊';
 });
 
-/* ============ song glitch stutter ============ */
+/* ============ song glitch stutter (continuous) ============ */
 function scheduleAudioGlitch(){
-  const delay = 6000 + Math.random()*9000;
-  setTimeout(()=>{
-    if(!bgm.paused && !bgm.muted){
-      const savedRate = bgm.playbackRate;
-      let ticks = 0;
-      const stutter = setInterval(()=>{
-        bgm.playbackRate = ticks % 2 === 0 ? 0.4 : 1.7;
-        ticks++;
-        if(ticks>=4){
-          clearInterval(stutter);
-          bgm.playbackRate = savedRate;
-        }
-      }, 70);
+  setInterval(()=>{
+    if(bgm.paused || bgm.muted) return;
+    let rate = 0.92 + Math.sin(Date.now()/450) * 0.08 + (Math.random()-0.5)*0.12;
+    if(Math.random() < 0.08){
+      rate = Math.random() < 0.5 ? 0.35 : 1.85;
     }
-    scheduleAudioGlitch();
-  }, delay);
+    bgm.playbackRate = Math.max(0.25, Math.min(2.2, rate));
+  }, 140);
 }
 
 /* ============ message sequence ============ */
